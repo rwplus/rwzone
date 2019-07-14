@@ -42,5 +42,13 @@ export default [
       `@/views/Dingtalk.vue`
     )
   },
+  {
+    path: '/crud',
+    meta: { breadcrumb: true },
+    name: 'Crud',
+    component: () => import(
+      `@/views/Crud.vue`
+    )
+  },
 
 ];

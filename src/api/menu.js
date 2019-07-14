@@ -12,7 +12,8 @@ const Menu =  [
     component: 'widgets',
     icon: 'fa-braille',
     items: [
-      { name: '钉钉API', title: '钉钉API', component: 'Dingtalk',action:'fa-code'}
+      { name: '钉钉API', title: '钉钉API', component: 'Dingtalk',action:'fa-code'},
+      { name: '数据校验', title: '数据校验', component: 'Crud',action:'fa-code'}
     ]
   },
   { header: 'Extras' },
