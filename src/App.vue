@@ -1,29 +1,77 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+ <div id="appRoot">
+    <template v-if="!$route.meta.public">
+      <v-app id="inspire" class="app" :dark="$vuetify.dark">
+        <app-drawer class="app--drawer"></app-drawer>
+        <v-content :dark="$vuetify.dark">
+          <page-header v-if="$route.meta.breadcrumb"></page-header>
+          <div class="page-wrapper">
+            <router-view></router-view>
+          </div>
+        </v-content>
+      </v-app>
+    </template>
+    <template v-else>
+      <transition>
+        <keep-alive>
+          <router-view :key="$route.fullpath"></router-view>
+        </keep-alive>
+      </transition>
+    </template>
+
+    <v-snackbar
+      :timeout="3000"
+      top
+      multi-line
+      :color="snackbar.color"
+      v-model="snackbar.show"
+    >
+      {{ snackbar.text }}
+      <v-btn dark flat @click.native="snackbar.show = false" icon color="pink">
+        Close
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import AppDrawer from '@/components/core/AppDrawer';
+import AppEvents from  './api/event';
+import PageHeader from '@/components/core/PageHeader';
+
+export default {
+  components: {
+    AppDrawer,
+    PageHeader
+  },
+  data: () => ({
+    expanded: true,
+    rightDrawer: false,
+    snackbar: {
+      show: true,
+      text: 'welcome to rwzone',
+      color: 'black',
     }
-  }
-}
-</style>
+  }),
+
+  computed: {
+
+  },
+
+  created () {
+    AppEvents.forEach(item => {
+      this.$on(item.name, item.callback);
+    });
+    window.getApp = this;
+  },
+
+  methods: {
+    openThemeSettings () {
+      this.$vuetify.goTo(0);
+      this.rightDrawer = (!this.rightDrawer);
+    }
+  },
+
+};
+</script>
+
