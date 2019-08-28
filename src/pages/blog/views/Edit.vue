@@ -1,11 +1,15 @@
 <template>
   <v-container fluid class="edit-container">
-    <v-row class="edit-header">
-      <v-col cols="4"><v-text-field autofocus></v-text-field></v-col>
-    </v-row>
+    <v-row class="edit-header">头部</v-row>
     <v-row class="edit-content">
-      <v-col cols="6">
-        <v-textarea v-model="content" auto-grow flat></v-textarea>
+      <v-col class="inputArea" cols="6">
+        <v-textarea v-model="content"
+        :solo="solo"
+        :auto-grow="autoGrow"
+        :no-resize="noResize"
+        :row-height="rowHeight"
+        :rows="rows"
+        ></v-textarea>
       </v-col>
       <v-col cols="6">
         <div id="html-article"></div>
@@ -20,7 +24,12 @@ import marked from "marked";
 export default {
   data() {
     return {
-      content: ""
+      content: "",
+      autoGrow: true,
+      noResize: true,
+      solo: true,
+      rowHeight: 20,
+      rows: 25
     };
   },
   methods: {},
@@ -45,17 +54,22 @@ export default {
     });
   },
   mounted() {
+    // 隐藏header和footer
     let [header, footer] = [
       document.getElementsByClassName("app-header")[0],
       document.getElementsByClassName("app-footer")[0]
     ];
     header.style.display = "none";
     footer.style.display = "none";
+    // 计算高度
+    let inputHeight = document.querySelector('.inputArea').clientHeight
+    this.rows = Math.floor(inputHeight / this.rowHeight) - 10
+    console.log(this.rows)
   }
 };
 </script>
 
-<style scoped>
+<style>
 .edit-container {
   height: 100%;
   display: flex;
@@ -68,5 +82,23 @@ export default {
 }
 .edit-content {
   flex: 1 0 auto;
+}
+#html-article {
+  padding: 18px 5px;
+}
+/* 设置行间距 */
+.v-textarea textarea {
+  flex: 1 1 auto;
+  line-height: 30px !important;
+  max-width: 100%;
+  min-height: 32px;
+  outline: none;
+  padding: 0 6px;
+  width: 100%;
+}
+/* 去掉默认的边距 */
+.v-text-field {
+  padding: 0;
+  margin: 0;
 }
 </style>
