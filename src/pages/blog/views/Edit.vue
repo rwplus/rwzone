@@ -1,14 +1,41 @@
 <template>
   <v-container fluid class="edit-container">
-    <v-row class="edit-header">头部</v-row>
+    <v-row class="edit-header">
+      <v-toolbar>
+        <v-icon color="#000">book</v-icon>
+        <v-text-field hide-details label="请输入文章标题"></v-text-field>
+        <div class="flex-grow-1"></div>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn icon v-on="on">
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="(item, index) in items" :key="index">
+              <v-list-item-title class="body-2">{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn icon>
+          <v-icon>search</v-icon>
+        </v-btn>
+        <v-switch v-model="ex11" label="FSR" color="red" value="red" hide-details></v-switch>
+      </v-toolbar>
+    </v-row>
     <v-row class="edit-content">
       <v-col class="inputArea" cols="6">
-        <v-textarea v-model="content"
-        :solo="solo"
-        :auto-grow="autoGrow"
-        :no-resize="noResize"
-        :row-height="rowHeight"
-        :rows="rows"
+        <v-textarea
+          v-model="content"
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+          :solo="solo"
+          :auto-grow="autoGrow"
+          :no-resize="noResize"
+          :row-height="rowHeight"
+          :rows="rows"
         ></v-textarea>
       </v-col>
       <v-col cols="6">
@@ -21,6 +48,7 @@
 
 <script>
 import marked from "marked";
+import 'highlight.js/styles/github.css'
 export default {
   data() {
     return {
@@ -32,13 +60,26 @@ export default {
       rows: 25
     };
   },
-  methods: {},
+  methods: {
+    // 防抖函数
+    debounce(fn, delay) {
+      let timer = null;
+      return function(...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.apply(this, args);
+          timer = null;
+        }, delay);
+      };
+    }
+  },
   watch: {
     content(val) {
       document.querySelector("#html-article").innerHTML = marked(val);
     }
   },
   created() {
+    // 引入marked解析器
     marked.setOptions({
       renderer: new marked.Renderer(),
       highlight: function(code) {
@@ -62,9 +103,15 @@ export default {
     header.style.display = "none";
     footer.style.display = "none";
     // 计算高度
-    let inputHeight = document.querySelector('.inputArea').clientHeight
-    this.rows = Math.floor(inputHeight / this.rowHeight) - 10
-    console.log(this.rows)
+    let inputHeight = document.querySelector(".inputArea").clientHeight;
+    this.rows = Math.floor(inputHeight / this.rowHeight) - 10;
+    // console.log(this.rows);
+    // // 代码高亮
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   document.querySelectorAll("pre code").forEach(block => {
+    //     hljs.highlightBlock(block);
+    //   });
+    // });
   }
 };
 </script>
@@ -79,6 +126,11 @@ export default {
 .edit-header,
 .edit-footer {
   flex: 0 1 20px;
+}
+.edit-header {
+  height: 64px;
+  margin-top: -12px;
+  flex: 0 0 auto;
 }
 .edit-content {
   flex: 1 0 auto;

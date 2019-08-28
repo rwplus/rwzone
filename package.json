@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "highlight.js": "^9.15.10",
     "marked": "^0.7.0",
     "stackedit-js": "^1.0.7",
     "vue": "^2.6.10",
