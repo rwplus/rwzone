@@ -1,5 +1,6 @@
 <template>
   <v-container class="app-header">
+    <v-row>
     <v-app-bar color="deep-purple accent-4" dark>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
@@ -11,6 +12,7 @@
         <v-icon dark>edit</v-icon>
       </v-btn>
     </v-app-bar>
+    </v-row>
   </v-container>
 </template>
 
@@ -28,4 +30,7 @@ export default {
 </script>
 
 <style>
+.app-header {
+  padding-top: 0;
+}
 </style>
