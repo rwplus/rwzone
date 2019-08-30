@@ -4,7 +4,16 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const routes = [
-    { path: '/', name: 'index', component: r => { require(['./App'], r) }, meta: { title: 'index' } }
+    {
+        path: '/',
+        name: 'index',
+        component: () => import(/* webpackChunkName: "rwhome" */ '@/pages/index/views/Index')
+    },
+    {
+        path: '/docs',
+        name: 'docs',
+        component: () => import(/* webpackChunkName: "rwdocs" */ '@/pages/index/views/Docs')
+    },
 ]
 
 export default new Router({

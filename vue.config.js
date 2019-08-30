@@ -29,6 +29,13 @@ module.exports = {
       filename: 'blog.html',
       title: 'Blog Page',
       chunks: ['chunk-vendors', 'chunk-common', 'blog']
+    },
+    editor: {
+      entry: 'src/pages/editor/main.js',
+      template: 'public/editor.html',
+      filename: 'editor.html',
+      title: 'editor',
+      chunks: ['chunk-vendors', 'chunk-common', 'editor']
     }
   }
 }
