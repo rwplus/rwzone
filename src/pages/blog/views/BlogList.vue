@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     routeArt(id) {
-      this.$router.push({ name: "artcle", params: { id } });
+      this.$router.push({ name: "article", params: { id } });
     }
   }
 };

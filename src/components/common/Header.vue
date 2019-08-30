@@ -33,4 +33,9 @@ export default {
 .app-header {
   padding-top: 0;
 }
+
+.img-demo {
+  width: 100px;
+  height: auto;
+}
 </style>

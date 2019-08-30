@@ -26,6 +26,7 @@
     <v-row class="edit-content">
       <v-col class="inputArea" cols="6">
         <v-textarea
+          ref="textarea"
           v-model="content"
           spellcheck="false"
           autocapitalize="off"
@@ -48,7 +49,7 @@
 
 <script>
 import marked from "marked";
-import 'highlight.js/styles/github.css'
+import "highlight.js/styles/github.css";
 export default {
   data() {
     return {
@@ -57,7 +58,9 @@ export default {
       noResize: true,
       solo: true,
       rowHeight: 20,
-      rows: 25
+      rows: 25,
+      items: [{title: 'save'}],
+      ex11: ''
     };
   },
   methods: {
@@ -111,6 +114,29 @@ export default {
     //   document.querySelectorAll("pre code").forEach(block => {
     //     hljs.highlightBlock(block);
     //   });
+    // });
+    // textarea支持intent缩进
+    // let tInput = this.$refs.textarea.$refs.input
+    // tInput.addEventListener('keydown', function(e){
+    //   console.log(this)
+    //   if(e.keyCode == 9){
+    //     e.preventDefault()
+    //     var intent = '  '
+
+    //   }
+    // })
+    // $("textarea").on("keydown", function(e) {
+    //   if (e.keyCode == 9) {
+    //     e.preventDefault();
+    //     var indent = "    ";
+    //     var start = this.selectionStart;
+    //     var end = this.selectionEnd;
+    //     var selected = window.getSelection().toString();
+    //     selected = indent + selected.replace(/\n/g, "\n" + indent);
+    //     this.value =
+    //       this.value.substring(0, start) + selected + this.value.substring(end);
+    //     this.setSelectionRange(start + indent.length, start + selected.length);
+    //   }
     // });
   }
 };
