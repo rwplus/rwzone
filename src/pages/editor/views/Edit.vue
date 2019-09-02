@@ -3,8 +3,8 @@
     <v-row class="edit-header">
       <v-toolbar>
         <v-icon color="#000" small>fa-book</v-icon>
-        <v-col cols='3'>
-        <v-text-field hide-details label="请输入文章标题" class="pl-2"></v-text-field>
+        <v-col cols="3">
+          <v-text-field hide-details label="请输入文章标题" class="pl-2"></v-text-field>
         </v-col>
         <div class="flex-grow-1"></div>
         <v-menu offset-y>
@@ -50,6 +50,7 @@
 
 <script>
 import marked from "marked";
+import renderer from "@/assets/js/markdownPrefix";
 import "highlight.js/styles/github.css";
 export default {
   data() {
@@ -60,8 +61,8 @@ export default {
       solo: true,
       rowHeight: 20,
       rows: 25,
-      items: [{title: 'save'}],
-      ex11: ''
+      items: [{ title: "save" }],
+      ex11: ""
     };
   },
   methods: {
@@ -85,7 +86,7 @@ export default {
   created() {
     // 引入marked解析器
     marked.setOptions({
-      renderer: new marked.Renderer(),
+      renderer,
       highlight: function(code) {
         return require("highlight.js").highlightAuto(code).value;
       },
@@ -100,12 +101,12 @@ export default {
   },
   mounted() {
     // 隐藏header和footer
-    let [header, footer] = [
-      document.getElementsByClassName("app-header")[0],
-      document.getElementsByClassName("app-footer")[0]
-    ];
-    header.style.display = "none";
-    footer.style.display = "none";
+    // let [header, footer] = [
+    //   document.getElementsByClassName("app-header"),
+    //   document.getElementsByClassName("app-footer")
+    // ];
+    // header.style.display = "none";
+    // footer.style.display = "none";
     // 计算高度
     let inputHeight = document.querySelector(".inputArea").clientHeight;
     this.rows = Math.floor(inputHeight / this.rowHeight) - 10;
