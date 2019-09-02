@@ -180,4 +180,142 @@ export default {
   padding: 0;
   margin: 0;
 }
+
+h1 {
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+
+h2 {
+    font-size:21px;
+     margin-top: 0;
+     margin-bottom: 24px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+h4 {
+    font-size: 16px;
+    margin-top: 0;
+     margin-bottom: 24px;
+}
+
+h5 {
+    font-size:15px;
+    margin-top: 0;
+     margin-bottom: 24px;
+}
+
+h6 {
+    font-size:15px;
+    margin-top: 0;
+     margin-bottom: 24px;
+}
+
+
+p {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+ul {
+    margin-bottom: 1rem;
+}
+
+ul ol {
+    padding-left: 40px !important;
+}
+
+li {
+    font-size:14px;
+    letter-spacing: 0.03125em !important;
+}
+
+ul li p {
+    font-size: 12px;
+ }
+
+code {
+    background-color: #282c34 !important;
+    color: #fff;
+    width: 100%;
+    min-height: 20px;
+}
+
+code, pre[class*=language-] {
+    line-height: 1.4;
+    padding: 20px 24px;
+    background: transparent;
+    overflow: auto;
+    margin: 7px 0;
+    overflow: auto;
+}
+
+
+code[class*=language-],pre[class*=language-] {
+    color: #ccc;
+    background: none;
+    text-align: left;
+    white-space: pre;
+    font-size: 12px;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+blockquote {
+    border-left: 5px solid #f60;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding:.8rem 1.6rem;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+blockquote p {
+    font-size: 10px;
+    margin-bottom: 0px !important;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    -webkit-text-decoration-skip: objects;
+}
+
+p code {
+    color: #476582 !important;
+    width: fit-content;
+    padding: .25rem .5rem;
+    margin: 0;
+    /* height: auto; */
+    font-size: .85em;
+    background-color: rgba(27,31,35,.05) !important;
+    border-radius: 3px;
+}
+
+p code kbd {
+    border-radius: 3px;
+    white-space: pre-wrap;
+    font-size: 85%;
+    font-weight: 900;
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-subst {
+    color: #f60;
+    font-weight: bold;
+}
+
 </style>
